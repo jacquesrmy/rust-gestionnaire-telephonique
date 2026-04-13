@@ -24,7 +24,6 @@ cargo run --release
 ```
 
 ## Commandes utiles
-
 ### Compilation rapide
 ```bash
 cargo check
@@ -42,3 +41,20 @@ Lance les verifications de style et de qualite avec Clippy, et echoue si un warn
 cargo test
 ```
 Lance les tests unitaires et les tests d'integration du projet.
+
+## Donnees de test
+Les fichiers presents dans le dossier `data/` sont fournis pour les tests
+et doivent etre utilises sans modification.
+
+## Visualisation PlantUML
+Le programme genere un fichier `.puml`.
+La visualisation du resultat se fait ensuite manuellement avec PlantUML.
+
+## Ressources
+Ce projet doit s'appuyer sur les bonnes pratiques suivantes :
+
+- Rust Book : organisation d’un projet  
+  https://doc.rust-lang.org/book/ch12-00-an-io-project.html
+
+- Conventional Commits : standardisation des messages Git  
+  https://www.conventionalcommits.org/en/v1.0.0/
