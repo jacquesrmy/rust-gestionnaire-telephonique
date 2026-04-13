@@ -42,9 +42,72 @@ cargo test
 ```
 Lance les tests unitaires et les tests d'integration du projet.
 
+## Makefile
+Le projet fournit un `Makefile` pour simplifier les commandes.
+
+### Verification complete locale
+```bash
+make
+```
+ou
+```bash
+make ci
+```
+
+### Formatage du code
+```bash
+make fmt
+```
+
+### Verification rapide de compilation
+```bash
+make check
+```
+
+### Analyse avec Clippy
+```bash
+make clippy
+```
+
+### Lancement des tests
+```bash
+make test
+```
+
+## CI
+Le depot utilise GitHub Actions pour verifier automatiquement :
+- le formatage du code
+- la compilation
+- les checks Clippy
+- les tests
+
+Les modifications doivent passer par une pull request avant fusion dans main.
+
+## Workflow Git recommande
+Avant de commencer une modification :
+```bash
+git checkout main
+git pull
+git checkout -b type/description-courte
+```
+
+Une fois les modifications terminees :
+
+```bash
+make fmt
+make ci
+git add .
+git commit -m "type: description concise"
+git push -u origin nom-de-branche
+```
+
+Ensuite :
+- ouvrir une pull request sur github
+- attendre la CI
+- merger si tout est valide
+
 ## Donnees de test
-Les fichiers presents dans le dossier `data/` sont fournis pour les tests
-et doivent etre utilises sans modification.
+Les fichiers presents dans le dossier `data/` sont fournis pour les tests et ne doivent pas etre modifie.
 
 ## Visualisation PlantUML
 Le programme genere un fichier `.puml`.
