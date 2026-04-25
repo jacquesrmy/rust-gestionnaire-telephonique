@@ -1,1 +1,29 @@
+use crate::trie::{Trie, TrieNode};
 
+pub fn generate_plantuml(trie: &Trie) -> String {
+    let mut output = String::from("@startmindmap\n");
+
+    write_node(&trie.root, 1, &mut output);
+
+    output.push_str("@endmindmap\n");
+    output
+}
+
+fn write_node(node: &TrieNode, level: usize, output: &mut String) {
+    let mut children: Vec<(&char, &TrieNode)> = node.children.iter().collect();
+    children.sort_by_key(|(c, _)| **c);
+
+    for (digit, child) in children {
+        output.push_str(&"*".repeat(level));
+        output.push(' ');
+        output.push(*digit);
+
+        if child.is_end {
+            output.push_str(" Alice"); // TEMP
+        }
+
+        output.push('\n');
+
+        write_node(child, level + 1, output);
+    }
+}
