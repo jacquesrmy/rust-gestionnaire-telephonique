@@ -7,7 +7,14 @@ use rust_gestionnaire_telephonique::models::Contact;
 use rust_gestionnaire_telephonique::plantuml::generate_plantuml;
 use rust_gestionnaire_telephonique::trie::Trie;
 
-fn main() -> Result<(), AppError> {
+fn main() {
+    if let Err(error) = run() {
+        eprintln!("Erreur: {}", error);
+        std::process::exit(1);
+    }
+}
+
+fn run() -> Result<(), AppError> {
     let input_path = env::args().nth(1).ok_or(AppError::MissingArgument)?;
 
     let output_path = build_output_path(&input_path)?;
