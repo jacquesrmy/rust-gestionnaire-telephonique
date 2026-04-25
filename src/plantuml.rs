@@ -17,13 +17,14 @@ fn write_node(node: &TrieNode, level: usize, output: &mut String) {
         output.push_str(&"*".repeat(level));
         output.push(' ');
         output.push(*digit);
+        output.push('\n');
 
         if let Some(name) = &child.name {
+            output.push_str(&"*".repeat(level + 1));
             output.push(' ');
             output.push_str(name);
+            output.push('\n');
         }
-
-        output.push('\n');
 
         write_node(child, level + 1, output);
     }
