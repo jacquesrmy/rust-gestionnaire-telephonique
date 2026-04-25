@@ -3,7 +3,7 @@ use std::collections::HashMap;
 #[derive(Debug)]
 pub struct TrieNode {
     pub children: HashMap<char, TrieNode>,
-    pub is_end: bool,
+    pub name: Option<String>,
 }
 
 #[derive(Debug)]
@@ -15,7 +15,7 @@ impl TrieNode {
     pub fn new() -> Self {
         TrieNode {
             children: HashMap::new(),
-            is_end: false,
+            name: None,
         }
     }
 }
@@ -33,14 +33,14 @@ impl Trie {
         }
     }
 
-    pub fn insert(&mut self, number: &str) {
+    pub fn insert(&mut self, number: &str, name: &str) {
         let mut current = &mut self.root;
 
         for c in number.chars() {
             current = current.children.entry(c).or_default();
         }
 
-        current.is_end = true;
+        current.name = Some(name.to_string());
     }
 }
 

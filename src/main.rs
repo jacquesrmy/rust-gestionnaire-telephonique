@@ -17,7 +17,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut trie = Trie::new();
 
     for contact in &contacts {
-        trie.insert(&contact.nb);
+        trie.insert(&contact.nb, &contact.name);
     }
 
     let plantuml = generate_plantuml(&trie);
