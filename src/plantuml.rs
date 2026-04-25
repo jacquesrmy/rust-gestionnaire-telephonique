@@ -18,8 +18,9 @@ fn write_node(node: &TrieNode, level: usize, output: &mut String) {
         output.push(' ');
         output.push(*digit);
 
-        if child.is_end {
-            output.push_str(" Alice"); // TEMP
+        if let Some(name) = &child.name {
+            output.push(' ');
+            output.push_str(name);
         }
 
         output.push('\n');
