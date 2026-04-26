@@ -29,3 +29,24 @@ fn write_node(node: &TrieNode, level: usize, output: &mut String) {
         write_node(child, level + 1, output);
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::trie::Trie;
+
+    #[test]
+    fn test_generate_plantuml_simple() {
+        let mut trie = Trie::new();
+        trie.insert("123", "Alice");
+
+        let output = generate_plantuml(&trie);
+
+        assert!(output.contains("@startmindmap"));
+        assert!(output.contains("* 1"));
+        assert!(output.contains("** 2"));
+        assert!(output.contains("*** 3"));
+        assert!(output.contains("**** Alice"));
+        assert!(output.contains("@endmindmap"));
+    }
+}
