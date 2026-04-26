@@ -59,3 +59,19 @@ mod tests {
         assert!(result.contains("@startmindmap"));
     }
 }
+
+#[test]
+fn test_clean_json_trailing_commas_in_array() {
+    let input = "[\n  {\n    \"nb\": \"123\",\n    \"name\": \"Alice\"\n  },\n]";
+    let expected = "[\n  {\n    \"nb\": \"123\",\n    \"name\": \"Alice\"\n  }\n]";
+
+    assert_eq!(clean_json_trailing_commas(input), expected);
+}
+
+#[test]
+fn test_clean_json_trailing_commas_in_object() {
+    let input = "{\n  \"a\": 1,\n}";
+    let expected = "{\n  \"a\": 1\n}";
+
+    assert_eq!(clean_json_trailing_commas(input), expected);
+}
