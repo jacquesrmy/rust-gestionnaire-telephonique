@@ -18,9 +18,25 @@ Gestionnaire de numeros de telephone en Rust base sur un trie (prefix tree).
 ## Lancer le projet
 
 Exemple de lancement :
+
+### Exemple simple
 ```bash
-cargo run --release
-#TODO: Ajouter veritable commande de lancement (OBLIGATOIRE)
+cargo run --release -- data/01_simple.json
+```
+
+### Plusieurs racines
+```bash
+cargo run --release -- data/02_different_roots.json
+```
+
+### Cas imbriqué
+```bash
+cargo run --release -- data/03_one_in_another.json
+```
+
+### Cas complet
+```bash
+cargo run --release -- data/04_common_parts.json
 ```
 
 ## Commandes utiles
