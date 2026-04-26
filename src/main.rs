@@ -1,5 +1,4 @@
 use std::env;
-use std::fs;
 
 use rust_gestionnaire_telephonique::config::build_output_path;
 use rust_gestionnaire_telephonique::error::AppError;
@@ -19,7 +18,19 @@ fn run() -> Result<(), AppError> {
 
     let output_path = build_output_path(&input_path)?;
 
-    let content = fs::read_to_string(&input_path).map_err(|e| AppError::IoError(e.to_string()))?;
+    let plantuml = process(&input_path)?;
+
+    std::fs::write(&output_path, plantuml).map_err(|e| AppError::IoError(e.to_string()))?;
+
+    println!("Fichier genere : {}", output_path);
+
+    Ok(())
+}
+
+fn process(input_path: &str) -> Result<String, AppError> {
+    let content =
+        std::fs::read_to_string(input_path).map_err(|e| AppError::IoError(e.to_string()))?;
+
     let content = content.replace(",\r\n]", "\r\n]");
     let content = content.replace(",\n]", "\n]");
 
@@ -32,11 +43,5 @@ fn run() -> Result<(), AppError> {
         trie.insert(&contact.nb, &contact.name);
     }
 
-    let plantuml = generate_plantuml(&trie);
-
-    fs::write(&output_path, plantuml).map_err(|e| AppError::IoError(e.to_string()))?;
-
-    println!("Fichier genere : {}", output_path);
-
-    Ok(())
+    Ok(generate_plantuml(&trie))
 }
