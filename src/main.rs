@@ -1,7 +1,7 @@
 use std::env;
 use std::fs;
-use std::path::Path;
 
+use rust_gestionnaire_telephonique::config::build_output_path;
 use rust_gestionnaire_telephonique::error::AppError;
 use rust_gestionnaire_telephonique::models::Contact;
 use rust_gestionnaire_telephonique::plantuml::generate_plantuml;
@@ -39,15 +39,4 @@ fn run() -> Result<(), AppError> {
     println!("Fichier genere : {}", output_path);
 
     Ok(())
-}
-
-fn build_output_path(input_path: &str) -> Result<String, AppError> {
-    let path = Path::new(input_path);
-
-    let file_stem = path
-        .file_stem()
-        .and_then(|stem| stem.to_str())
-        .ok_or(AppError::InvalidFile(input_path.to_string()))?;
-
-    Ok(format!("graph/{file_stem}.puml"))
 }
