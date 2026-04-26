@@ -12,3 +12,14 @@ pub fn build_output_path(input_path: &str) -> Result<String, AppError> {
 
     Ok(format!("graph/{file_stem}.puml"))
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_build_output_path() {
+        let output = build_output_path("data/01_simple.json").unwrap();
+        assert_eq!(output, "graph/01_simple.puml");
+    }
+}
