@@ -39,6 +39,12 @@ cargo run --release -- data/03_one_in_another.json
 cargo run --release -- data/04_common_parts.json
 ```
 
+### Aide
+```bash
+cargo run -- -h
+cargo run -- -help
+```
+
 ## Commandes utiles
 ### Compilation rapide
 ```bash
